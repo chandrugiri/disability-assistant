@@ -1,0 +1,17 @@
+# Python cache & virtual env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+*.env
+
+# Chroma / vector database
+chroma_db2/
+*.sqlite3
+*.bin
+*.pickle
+
+# OS files
+.DS_Store
+Thumbs.db
