@@ -1,10 +1,14 @@
 fastapi
 uvicorn
+langchain
 langchain-community
 langchain-core
+langchain-openai
+langchain-chroma
 openai
 chromadb
 pydantic
 tiktoken
 python-dotenv
 PyJWT
+requests
