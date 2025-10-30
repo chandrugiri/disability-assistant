@@ -1,1 +1,1 @@
-uvicorn search_api:app --host 0.0.0.0 --port $PORT
+uvicorn search_query:app --host 0.0.0.0 --port $PORT
