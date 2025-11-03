@@ -28,7 +28,7 @@ os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 
 # Load vector DB
 # persist_dir = "chroma_db2"
-embedding = OpenAIEmbeddings()
+embedding = OpenAIEmbeddings(model="text-embedding-ada-002")
 db = Chroma(persist_directory=persist_dir, embedding_function=embedding)
 
 # 🧪 Diagnostic: check collections
