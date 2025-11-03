@@ -22,7 +22,7 @@ if os.path.exists("chroma_db2"):
 
 from langchain.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.embeddings import OpenAIEmbeddings
+from langchain_openai import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
 
 # Set your OpenAI API key
@@ -78,7 +78,7 @@ print(f"Unique chunks: {len(unique_chunks)}")
 persist_directory = "chroma_db2"
 
 # Embed and store
-embedding = OpenAIEmbeddings()
+embedding = OpenAIEmbeddings(model="text-embedding-ada-002")
 db = Chroma.from_documents(chunks, embedding, persist_directory=persist_directory)
 
 # Save the DB to disk
