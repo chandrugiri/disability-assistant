@@ -31,6 +31,14 @@ os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 embedding = OpenAIEmbeddings()
 db = Chroma(persist_directory=persist_dir, embedding_function=embedding)
 
+# 🧪 Diagnostic: check collections
+try:
+    print("🧪 Checking Chroma collections...")
+    collections = db._client.list_collections()
+    print("📚 Found collections:", collections)
+except Exception as e:
+    print("⚠️ Could not list collections:", e)
+
 # Define FastAPI app
 app = FastAPI()
 
