@@ -14,11 +14,20 @@ if not os.path.exists("chroma_db2") and os.path.exists("chroma_db2.zip"):
     with zipfile.ZipFile("chroma_db2.zip", "r") as zip_ref:
         zip_ref.extractall(".")
     print("✅ Unzipped chroma_db2.zip")
+
+# ✅ Auto-detect nested folder
+persist_dir = "chroma_db2"
+if not os.path.exists(os.path.join(persist_dir, "chroma.sqlite3")):
+    nested_path = os.path.join(persist_dir, "chroma_db2")
+    if os.path.exists(nested_path):
+        persist_dir = nested_path
+
+print("📁 Using persist_directory:", persist_dir)
 # Set API key
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 
 # Load vector DB
-persist_dir = "chroma_db2"
+# persist_dir = "chroma_db2"
 embedding = OpenAIEmbeddings()
 db = Chroma(persist_directory=persist_dir, embedding_function=embedding)
 
