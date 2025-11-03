@@ -6,7 +6,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
-import os, Zipfile
+import os, zipfile
 from fastapi.middleware.cors import CORSMiddleware
 
 # ✅ Automatically unzip if chroma_db2 folder doesn’t exist
