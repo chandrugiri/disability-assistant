@@ -6,9 +6,14 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
-import os
+import os, Zipfile
 from fastapi.middleware.cors import CORSMiddleware
 
+# ✅ Automatically unzip if chroma_db2 folder doesn’t exist
+if not os.path.exists("chroma_db2") and os.path.exists("chroma_db2.zip"):
+    with zipfile.ZipFile("chroma_db2.zip", "r") as zip_ref:
+        zip_ref.extractall(".")
+    print("✅ Unzipped chroma_db2.zip")
 # Set API key
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 
