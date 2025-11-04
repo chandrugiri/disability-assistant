@@ -124,11 +124,15 @@ def create_join_token(identity: str, room: str, ttl: int = 3600):
     token = jwt.encode(payload, LIVEKIT_API_SECRET, algorithm="HS256")
     return token
 
-@app.get("/get_token")
-def get_token(identity: str = Query(...), room: Optional[str] = None):
+class TokenRequest(BaseModel):
+    identity: str
+    room: Optional[str] = None
+
+@app.post("/get_token")
+def get_token(req: TokenRequest):
     """Return token + room name + URL for given user identity."""
-    if not room:
-        room = f"disability_room_{identity}"
+    identity = req.identity
+    room = req.room or f"disability_room_{identity}"
     token = create_join_token(identity, room)
     return {
         "identity": identity,
@@ -136,6 +140,18 @@ def get_token(identity: str = Query(...), room: Optional[str] = None):
         "token": token,
         "livekit_url": LIVEKIT_URL
     }
+# @app.get("/get_token")
+# def get_token(identity: str = Query(...), room: Optional[str] = None):
+#     """Return token + room name + URL for given user identity."""
+#     if not room:
+#         room = f"disability_room_{identity}"
+#     token = create_join_token(identity, room)
+#     return {
+#         "identity": identity,
+#         "room_name": room,
+#         "token": token,
+#         "livekit_url": LIVEKIT_URL
+#     }
 
 
 
