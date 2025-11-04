@@ -20,7 +20,7 @@ if os.path.exists("chroma_db2"):
 
 # In[2]:
 
-from langchain.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
@@ -79,12 +79,15 @@ persist_directory = "chroma_db2"
 
 # Embed and store
 embedding = OpenAIEmbeddings(model="text-embedding-ada-002")
-db = Chroma.from_documents(chunks, embedding, persist_directory=persist_directory)
+db = Chroma.from_documents(unique_chunks, embedding, persist_directory=persist_directory, collection_name="langchain")
 
 # Save the DB to disk
 db.persist()
 
 print("✅ Done! Embeddings stored in Chroma vector DB.")
+
+# (optional quick sanity check locally)
+print("📦 Local collection count:", db._collection.count())
 
 
 # In[7]:
