@@ -2,6 +2,7 @@
 # coding: utf-8
 
 import uvicorn
+import time, jwt
 from fastapi import FastAPI, Query
 from pydantic import BaseModel
 from langchain_chroma import Chroma
