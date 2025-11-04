@@ -29,7 +29,12 @@ os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 # Load vector DB
 # persist_dir = "chroma_db2"
 embedding = OpenAIEmbeddings(model="text-embedding-ada-002")
-db = Chroma(persist_directory=persist_dir, embedding_function=embedding)
+db = Chroma(persist_directory=persist_dir, embedding_function=embedding, collection_name="langchain")
+
+try:
+    print("📦 Server collection count:", db._collection.count())
+except Exception as e:
+    print("⚠️ count() failed:", e)
 
 # 🧪 Diagnostic: check collections
 try:
