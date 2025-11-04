@@ -17,10 +17,14 @@ if not os.path.exists("chroma_db2") and os.path.exists("chroma_db2.zip"):
 
 # ✅ Auto-detect nested folder
 persist_dir = "chroma_db2"
-if not os.path.exists(os.path.join(persist_dir, "chroma.sqlite3")):
-    nested_path = os.path.join(persist_dir, "chroma_db2")
-    if os.path.exists(nested_path):
-        persist_dir = nested_path
+if os.path.exists("chroma.sqlite3"):
+    persist_dir = "."
+else:
+    persist_dir = "chroma_db2"
+# if not os.path.exists(os.path.join(persist_dir, "chroma.sqlite3")):
+#     nested_path = os.path.join(persist_dir, "chroma_db2")
+#     if os.path.exists(nested_path):
+#         persist_dir = nested_path
 
 print("📁 Using persist_directory:", persist_dir)
 # Set API key
