@@ -10,7 +10,6 @@ import os, zipfile
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional
 from dotenv import load_dotenv
-from flask import Flask, request, jsonify
 
 # ✅ Automatically unzip if chroma_db2 folder doesn’t exist
 if not os.path.exists("chroma_db2") and os.path.exists("chroma_db2.zip"):
