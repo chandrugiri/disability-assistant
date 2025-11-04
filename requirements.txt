@@ -12,3 +12,4 @@ tiktoken
 python-dotenv
 PyJWT
 requests
+livekit
